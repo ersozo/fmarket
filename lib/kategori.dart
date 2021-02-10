@@ -34,7 +34,7 @@ class _KategoriState extends State<Kategori> {
           'https://cdn.pixabay.com/photo/2019/10/05/09/38/meal-4527484_960_720.jpg',
         ),
         urunKarti(
-          "Yumurta 8'li",
+          'Yumurta 8\'li',
           '12.50 TL',
           'https://cdn.pixabay.com/photo/2020/04/08/13/49/egg-5017474_960_720.jpg',
         ),
@@ -95,7 +95,7 @@ class _KategoriState extends State<Kategori> {
           'https://cdn.pixabay.com/photo/2017/02/02/15/15/bottle-2032980_960_720.jpg',
         ),
         urunKarti(
-          "Maden Suyu 6'lı",
+          'Maden Suyu 6\'lı',
           '5 TL',
           'https://cdn.pixabay.com/photo/2017/08/27/17/43/water-glass-2686973_960_720.jpg',
         ),
