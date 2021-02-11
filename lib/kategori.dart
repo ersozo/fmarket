@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fmarket/urun_detay.dart';
 
 class Kategori extends StatefulWidget {
   final String kategori;
@@ -22,6 +23,7 @@ class _KategoriState extends State<Kategori> {
           'Zeytin Yağı',
           '23.50 TL',
           'https://cdn.pixabay.com/photo/2016/05/24/13/29/olive-oil-1412361_960_720.jpg',
+          mevcut: true,
         ),
         urunKarti(
           'Süt',
@@ -47,6 +49,7 @@ class _KategoriState extends State<Kategori> {
           'Çay',
           '30 TL',
           'https://cdn.pixabay.com/photo/2016/03/12/13/25/tee-1252000_960_720.jpg',
+          mevcut: true,
         ),
         urunKarti(
           'Ketçap',
@@ -121,60 +124,78 @@ class _KategoriState extends State<Kategori> {
     }
   }
 
-  Widget urunKarti(String urunAdi, String fiyat, String resimLinki) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            blurRadius: 4.0,
-            spreadRadius: 2.0,
-          )
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 120.0,
-            height: 80.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  resimLinki,
+  Widget urunKarti(String urunAdi, String fiyat, String resimLinki, {bool mevcut = false}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UrunDetay(
+              urunAdi: urunAdi,
+              fiyat: fiyat,
+              resimLinki: resimLinki,
+              mevcut: mevcut,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              blurRadius: 4.0,
+              spreadRadius: 2.0,
+            )
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Hero(
+              tag: resimLinki,
+              child: Container(
+                width: 120.0,
+                height: 80.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      resimLinki,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(
+                    20.0,
+                  ),
                 ),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(
-                20.0,
               ),
             ),
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          Text(
-            urunAdi,
-            style: TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[600],
+            SizedBox(
+              height: 8.0,
             ),
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          Text(
-            fiyat,
-            style: TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.red[400],
+            Text(
+              urunAdi,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[600],
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              fiyat,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.red[400],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
